@@ -1,0 +1,74 @@
+﻿@model Html_Helpers.Models.Persona
+@using Html_Helpers.Models
+
+@{
+    ViewBag.Title = "Persona";
+}
+
+<h2>Persona</h2>
+
+@using (Html.BeginForm("Persona", "Home", FormMethod.Post))
+{
+<div class="form-row">
+    <div class="col-md-4">
+        <p>
+            @Html.LabelFor(m => m.Cedula) @Html.EditorFor(m => m.Cedula, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Cedula, null, new { @class = "text-danger" })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Nombre) @Html.EditorFor(m => m.Nombre, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Nombre, null, new { @class = "text-danger" })
+        </p>
+        <p>
+            @Html.LabelFor(m => m.Apellido) @Html.EditorFor(m => m.Apellido, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Apellido, null, new { @class = "text-danger" })
+        </p>
+    </div>
+</div>
+    <p>
+        @Html.LabelFor(m => m.Edad) @Html.EditorFor(m => m.Edad, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Edad, null, new { @class = "text-danger" })
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Telefono) @Html.EditorFor(m => m.Telefono, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Telefono, null, new { @class = "text-danger" })
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Correo) @Html.EditorFor(m => m.Correo, new { htmlAttributes = new { @class = "form-control" } }) <br /> @Html.ValidationMessageFor(m => m.Correo, null, new { @class = "text-danger" })
+    </p>
+    <p>
+        @Html.LabelFor(m => m.genero) @Html.DropDownListFor(m => m.genero,
+                                                 new SelectList(Enum.GetValues(typeof(Genero))),
+                                                                "Select Gender", new { @class = "form-control" }) <br /> @Html.ValidationMessageFor(m => m.genero, null, new { @class = "text-danger" })
+    </p>
+    <p>
+        @Html.LabelFor(m => m.Estado) 
+        <div class="col-md-10 form-check-input">
+            <div class="col-md-12">
+                <div class="col-md-6 form-check-input">
+                    Casado
+                    @Html.RadioButtonFor(model => model.Estado, "Casado")
+                    Soltero
+                    @Html.RadioButtonFor(model => model.Estado, "Soltero")
+                </div>
+
+                <div class="col-md-6 form-check-input">
+                    Viudo
+                    @Html.RadioButtonFor(model => model.Estado, "Viudo")
+                    Union libre
+                    @Html.RadioButtonFor(model => model.Estado, "Union Libre")
+                </div>
+            </div>
+        </div> <br />
+            <br /> @Html.ValidationMessageFor(m => m.Estado, null, new { @class = "text-danger" })
+</p>
+    <p>
+        
+            @Html.LabelFor(m => m.Hobby)
+            @for (int i = 0; i < Model.Hobby.Count; i++)
+            {<div class="col-md-12">
+                @Html.CheckBoxFor(model => model.Hobby[i].isChecked)
+                @Html.DisplayFor(model => model.Hobby[i].Hobbys)
+                @Html.HiddenFor(model => model.Hobby[i].Id)
+                @Html.HiddenFor(model => model.Hobby[i].Hobbys)
+            </div>
+    }
+
+    </p>
+    <input type="submit" value="Enviar" />
+}

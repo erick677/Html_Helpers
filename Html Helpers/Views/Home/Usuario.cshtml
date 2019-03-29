@@ -1,0 +1,35 @@
+﻿@model Html_Helpers.Models.Persona
+@{
+    ViewBag.Title = "Usuario";
+}
+
+<h2>Usuario</h2>
+
+<table class="table table-striped table-dark">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Cedula</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Genero</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Hobbys</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Cedula</td>
+            <td>@Model.Nombre</td>
+            <td>@Model.Apellido</td>
+            <td>@Model.Edad</td>
+            <td>@Model.Telefono</td>
+            <td>@Model.Correo</td>
+            <td>@Model.genero</td>
+            <td>@Model.Estado</td>
+            <td>@ViewBag.Listado</td>
+        </tr>
+    </tbody>
+</table>
